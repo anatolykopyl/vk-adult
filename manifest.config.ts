@@ -36,4 +36,4 @@ export default defineManifest(async (env) => ({
   action: {
     default_title: "VK Adult",
   }
-}))
+}));

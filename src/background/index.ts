@@ -1,9 +1,12 @@
-import type { TRequest } from "../types/request"
+import type { TRequest } from "~/types/request";
+import { Message } from "~/constants/messages";
 
-chrome.storage.sync.set({ adult: "0" });
+import "./get-tab-id";
+
+chrome.storage.session.setAccessLevel({ accessLevel: 'TRUSTED_AND_UNTRUSTED_CONTEXTS' });
 
 chrome.runtime.onMessage.addListener(function(msg, sender) {
-  if (msg !== "enable") return;
+  if (msg !== Message.Enable) return;
 
   const { tab } = sender;
   if (!tab) return;
@@ -52,7 +55,7 @@ chrome.runtime.onMessage.addListener(function(msg, sender) {
 
 
 chrome.runtime.onMessage.addListener(function(msg, sender) {
-  if (msg !== "disable") return;
+  if (msg !== Message.Disable) return;
 
   const { tab } = sender;
   if (!tab) return;
@@ -65,10 +68,10 @@ chrome.tabs.onRemoved.addListener((tabId) => {
 });
 
 chrome.runtime.onMessage.addListener(function(msg, sender) {
-  if (msg !== "reload") return;
+  if (msg !== Message.Reload) return;
 
   const { tab } = sender;
   if (!tab || !tab.id) return;
 
-  chrome.tabs.reload(tab.id)
+  chrome.tabs.reload(tab.id);
 });
