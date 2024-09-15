@@ -1,6 +1,11 @@
 import type { TRequest } from "../types/request"
 
-chrome.action.onClicked.addListener((tab) => {
+chrome.runtime.onMessage.addListener(function(msg, sender) {
+  if (msg !== "enable") return;
+
+  const { tab } = sender;
+  if (!tab) return;
+
   chrome.debugger.attach({ tabId: tab.id }, "1.3", () => {
     console.log("VK Adult attached");
 
@@ -43,7 +48,16 @@ chrome.action.onClicked.addListener((tab) => {
   });
 });
 
-// Detach the debugger when the tab is closed or navigated away
+
+chrome.runtime.onMessage.addListener(function(msg, sender) {
+  if (msg !== "disable") return;
+
+  const { tab } = sender;
+  if (!tab) return;
+
+  chrome.debugger.detach({ tabId: tab.id });
+});
+
 chrome.tabs.onRemoved.addListener((tabId) => {
   chrome.debugger.detach({ tabId });
 });

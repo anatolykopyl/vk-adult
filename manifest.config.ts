@@ -14,12 +14,19 @@ export default defineManifest(async (env) => ({
   version_name: version,
   permissions: [
     "debugger", 
-    "activeTab"
+    "activeTab",
+    "storage"
   ],
   background: {
     service_worker: "src/background/index.ts",
     type: "module"
   },
+  content_scripts: [
+    {
+      js: ["src/content/index.ts"],
+      matches: ["https://vk.com/video*"],
+    }
+  ],
   action: {
     default_title: "VK Adult",
   }
