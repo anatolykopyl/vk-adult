@@ -1,5 +1,7 @@
 import type { TRequest } from "../types/request"
 
+chrome.storage.sync.set({ adult: "0" });
+
 chrome.runtime.onMessage.addListener(function(msg, sender) {
   if (msg !== "enable") return;
 
