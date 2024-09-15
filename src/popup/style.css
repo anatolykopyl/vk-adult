@@ -1,0 +1,12 @@
+#app {
+  min-width: 160px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.logo img {
+  width: 64px;
+}

@@ -7,15 +7,20 @@ const [major, minor, patch, label = '0'] = version
   .replace(/[^\d.-]+/g, '')
   .split(/[.-]/)
 
-export default defineManifest(async (env) => ({
+export default defineManifest(async () => ({
   manifest_version: 3,
   name: 'VK Adult',
+  description: 'Возвращает возможность искать видео Вконтакте без ограничений',
+  developer: {
+    name: "Anatoly Kopyl",
+    url: "https://kopyl.dev",
+  },
   version: `${major}.${minor}.${patch}.${label}`,
   version_name: version,
   permissions: [
     "debugger", 
     "activeTab",
-    "storage"
+    "storage",
   ],
   icons: {
     16: "public/16.png",
@@ -25,7 +30,7 @@ export default defineManifest(async (env) => ({
   },
   background: {
     service_worker: "src/background/index.ts",
-    type: "module"
+    type: "module",
   },
   content_scripts: [
     {
@@ -35,5 +40,6 @@ export default defineManifest(async (env) => ({
   ],
   action: {
     default_title: "VK Adult",
-  }
+    default_popup: "src/popup/index.html",
+  },
 }));
