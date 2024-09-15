@@ -61,3 +61,12 @@ chrome.runtime.onMessage.addListener(function(msg, sender) {
 chrome.tabs.onRemoved.addListener((tabId) => {
   chrome.debugger.detach({ tabId });
 });
+
+chrome.runtime.onMessage.addListener(function(msg, sender) {
+  if (msg !== "reload") return;
+
+  const { tab } = sender;
+  if (!tab || !tab.id) return;
+
+  chrome.tabs.reload(tab.id)
+});
