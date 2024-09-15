@@ -9,7 +9,7 @@ const [major, minor, patch, label = '0'] = version
 
 export default defineManifest(async (env) => ({
   manifest_version: 3,
-  name: 'Vk Adult',
+  name: 'VK Adult',
   version: `${major}.${minor}.${patch}.${label}`,
   version_name: version,
   permissions: [
@@ -17,6 +17,12 @@ export default defineManifest(async (env) => ({
     "activeTab",
     "storage"
   ],
+  icons: {
+    16: "public/16.png",
+    32: "public/32.png",
+    48: "public/48.png",
+    128: "public/128.png",
+  },
   background: {
     service_worker: "src/background/index.ts",
     type: "module"
