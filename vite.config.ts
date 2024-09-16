@@ -9,5 +9,12 @@ export default defineConfig({
     alias: {
       '~': path.resolve(__dirname, './src'),
     }
-  }
+  },
+  build: {
+    rollupOptions: {
+      input: {
+        donate: 'src/pages/donate.html',
+      },
+    },
+  },
 });

@@ -11,10 +11,6 @@ export default defineManifest(async () => ({
   manifest_version: 3,
   name: 'VK Adult',
   description: 'Возвращает возможность искать видео Вконтакте без ограничений',
-  developer: {
-    name: "Anatoly Kopyl",
-    url: "https://kopyl.dev",
-  },
   version: `${major}.${minor}.${patch}.${label}`,
   version_name: version,
   permissions: [
@@ -35,7 +31,7 @@ export default defineManifest(async () => ({
   content_scripts: [
     {
       js: ["src/content/index.ts"],
-      matches: ["https://vk.com/video*"],
+      matches: ["https://vk.com/*"],
     }
   ],
   action: {
