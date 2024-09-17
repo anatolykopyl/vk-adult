@@ -14,8 +14,7 @@ export default defineManifest(async () => ({
   version: `${major}.${minor}.${patch}.${label}`,
   version_name: version,
   permissions: [
-    "debugger", 
-    "activeTab",
+    "debugger",
     "storage",
   ],
   icons: {
